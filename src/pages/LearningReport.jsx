@@ -25,11 +25,11 @@ const LearningReport = () => {
   const [incorrectValues, setIncorrectValues] = useState([]);
 
   useEffect(() => {
-    const authToken = localStorage.getItem("authToken"); // 토큰 가져오기
+    const accessToken = localStorage.getItem("accessToken"); // 토큰 가져오기
 
     axios
       .get("https://mathquestpro.shop/problem/reports/weekly/", {
-        headers: { Authorization: `Bearer ${authToken}` },
+        headers: { Authorization: `Bearer ${accessToken}` },
       })
       .then((response) => {
         const { correct, incorrect } = response.data.data;

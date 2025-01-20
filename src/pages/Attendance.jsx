@@ -25,7 +25,7 @@ const Attendance = () => {
   const fetchAttendanceData = (year, month) => {
     axios.get(`https://mathquestpro.shop/problem/attendance/${year}/${month}/`, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('authToken')}`,
+        Authorization: `Bearer ${localStorage.getItem('accessToken')}`,
       }
     })
       .then((response) => {

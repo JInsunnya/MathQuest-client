@@ -10,7 +10,10 @@ import circlestarred from '../assets/images/circlestarred.png';
 
 const QuestPage = () => {
     const location = useLocation();
-    const { level, difficulty, chapter } = location.state || {};
+    const queryParams = new URLSearchParams(location.search);
+    const level = queryParams.get('level');
+    const difficulty = queryParams.get('difficulty');
+    const chapter = queryParams.get('chapter');
     const [questions, setQuestions] = useState([]);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedOption, setSelectedOption] = useState(null);
@@ -19,9 +22,10 @@ const QuestPage = () => {
     const [showSolution, setShowSolution] = useState(false);
     const navigate = useNavigate();
 
+
     useEffect(() => {
         if (level && difficulty && chapter) {
-            const token = localStorage.getItem('authToken');
+            const token = localStorage.getItem('accessToken');
             if (!token) {
                 console.error('No authentication token found');
                 return;
@@ -29,7 +33,7 @@ const QuestPage = () => {
     
             const encodedURL = `https://mathquestpro.shop/problem/level_chapter_difficulty/${encodeURIComponent(level)}/${encodeURIComponent(chapter)}/${encodeURIComponent(difficulty)}/`;
             console.log('Encoded URL:', encodedURL);
-            console.log('Auth Token:', token);
+            console.log('accessToken:', token);
     
             axios
                 .get(encodedURL, {
@@ -66,7 +70,7 @@ const QuestPage = () => {
         const isCorrect = selectedOption === Number(currentQuestion.answer); 
         const status = isCorrect ? 'RIGHT' : 'WRONG';
     
-        const token = localStorage.getItem('authToken');
+        const token = localStorage.getItem('accessToken');
         if (!token) {
             console.error('No authentication token found');
             return;
