@@ -54,7 +54,7 @@ const SignOut = () => {
       return;
     }
 
-    const token = localStorage.getItem('authToken'); 
+    const token = localStorage.getItem('authToken');  // 토큰 가져오기
     
     if (!token) {
       alert('로그인된 사용자가 아닙니다.');
@@ -69,6 +69,9 @@ const SignOut = () => {
     try {
       // 아이디와 비밀번호를 백엔드에 전송
       const response = await axios.delete('https://mathquestpro.shop/user/delete/', {
+        headers: {
+          Authorization: `Bearer ${token}`,  // Authorization 헤더에 토큰 추가
+        },
         data: {
           password: password,  // 비밀번호 전송
         },

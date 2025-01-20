@@ -67,10 +67,7 @@ export const Button = styled.button`
     color: white;
     transition: transform 0.3s ease, background-color 0.3s ease; /* hover 시 transform을 추가 */
 
-    &:hover {
-      background-color: #ff0000;
-      transform: scale(1.05); /* 첫 번째 버튼에도 크기 변경 */
-    }
+    
   }
 
   &:last-child {

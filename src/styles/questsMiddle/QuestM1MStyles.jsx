@@ -121,7 +121,7 @@ export const Level1Content = styled.div`
   top: 40%;
   left: 37%;
   color: white;
-  font-weight: bold;
+  
 `;
 
 export const Level2 = styled.div`
@@ -166,7 +166,7 @@ export const Level2Content = styled.div`
   top: 40%;
   left: 37%;
   color: white;
-  font-weight: bold;
+  
 `;
 
 export const Level3 = styled.div`
@@ -211,5 +211,5 @@ export const Level3Content = styled.div`
   top: 40%;
   left: 37%;
   color: white;
-  font-weight: bold;
+  
 `;

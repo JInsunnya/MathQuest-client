@@ -20,11 +20,12 @@ export const Container = styled.div`
 `;
 
 export const Header = styled.div`
-  width: 393px;
   position: fixed;
   top: 0;  /* 상단 고정 */
+  margin: 0 auto;
   height: 40px;
-  width: 53%;
+  width: 100%; /* 컨테이너 박스의 너비를 따름 */
+  max-width: 353px; /* 컨테이너와 동일한 최대 너비 */
   background-color: #376AED; 
   z-index: 1000;
   color: #333;  // 글자 색상
@@ -64,7 +65,7 @@ export const ChartWrapper = styled.div`
 
 // 코멘트 영역
 export const CommentSection = styled.div`
-  width: 100%;
+  width: 80%;
   padding: 15px;
   background-color: #fff;
   border-radius: 8px;
