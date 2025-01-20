@@ -134,3 +134,12 @@ export const ErrorButton = styled.button`
         background-color: #ff2a2a;
     }
 `;
+
+export const LogoutPopup = styled.button`
+`;
+
+export const LogoutMessage = styled.button`
+`;
+
+export const CloseButton = styled.button`
+`;
