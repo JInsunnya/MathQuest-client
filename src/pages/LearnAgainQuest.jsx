@@ -124,7 +124,7 @@ const LearnAgainQuest = () => {
                                 <img src={popupContent.isCorrect ? circlestarblue : circlestarred} alt="Star Background" />
                                 <img src={check} alt="Check Icon" />
                             </LQP.PopupImageWrapper>
-                            <h2>{popupContent}</h2>
+                            <h2>{popupContent.message}</h2>
                             <button onClick={handleShowSolution}>해설보기</button>
                             <button onClick={handleGoBack}>오답노트로 돌아가기</button>
                         </LQP.PopupContent>
