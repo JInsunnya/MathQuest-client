@@ -21,6 +21,7 @@ const HowToUse = () => {
       image: screen2,
       title: '오답노트 활용',
       description: '오답노트를 통해 틀린 문제를 복습하고 학습의 효율성을 높이세요.',
+      rounded: true,
     },
     {
       image: screen3,
