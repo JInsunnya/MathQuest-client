@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from '../styles/HowToUseStyles'; 
 import screen1 from '../assets/images/screen1.png';
-import Image2 from '../assets/images/textlogoblack.png';
+import screen2 from '../assets/images/screen2.png';
 import screen3 from '../assets/images/screen3.png';
 import screen4 from '../assets/images/screen4.png';
 
@@ -18,7 +18,7 @@ const HowToUse = () => {
       rounded: true,
     },
     {
-      image: Image2,
+      image: screen2,
       title: '오답노트 활용',
       description: '오답노트를 통해 틀린 문제를 복습하고 학습의 효율성을 높이세요.',
     },
