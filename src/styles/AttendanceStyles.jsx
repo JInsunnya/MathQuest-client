@@ -17,6 +17,32 @@ export const CalendarContainer = styled.div`
   justify-content: center;
   text-align: center;
 `;
+
+export const Header = styled.div`
+  width: 393px;
+  position: fixed;
+  top: 0;  /* 상단 고정 */
+  height: 40px;
+  width: 53%;
+  background-color: #376AED; 
+  z-index: 1000;
+  color: #333;  // 글자 색상
+  padding: 20px;
+  font-size: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); 
+    
+  img {
+    max-width: 150px;
+    display: flex;
+    justify-content: left;
+    margin-top: 10px;
+  }
+
+
+`;
+
 export const DateDisplay = styled.div`
   display: flex;
   justify-content: space-between;

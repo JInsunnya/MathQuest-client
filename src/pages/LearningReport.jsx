@@ -10,6 +10,7 @@ import {
   CommentText,
 } from "../styles/LearningReportStyles";
 import Footer from '../shared/components/Footer';
+import TextLogoBlack from '../assets/images/textlogoblack.png';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend } from "chart.js";
 
 // Chart.js에 필요한 스케일과 플러그인 등록
@@ -20,6 +21,8 @@ const LearningReport = () => {
   const [comment, setComment] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [correctValues, setCorrectValues] = useState([]);
+  const [incorrectValues, setIncorrectValues] = useState([]);
 
   useEffect(() => {
     const authToken = localStorage.getItem("authToken"); // 토큰 가져오기
@@ -66,6 +69,8 @@ const LearningReport = () => {
         }
 
         setChartData(chartData);
+        setCorrectValues(correctValues); // correctValues 상태에 데이터 저장
+        setIncorrectValues(incorrectValues); // incorrectValues 상태에 데이터 저장
         setIsLoading(false);
       })
       .catch((error) => {
@@ -96,18 +101,28 @@ const LearningReport = () => {
         stacked: true, // x축 스택 활성화
         grid: { display: false },
         ticks: { color: "#333" },
+        // 막대 간 간격을 넓히기 위한 설정
+        categoryPercentage: 0.8, // 카테고리 내 막대 간격 조정 (0 ~ 1 사이)
+        barPercentage: 0.9, // 막대의 너비를 설정 (0 ~ 1 사이)
       },
       y: {
         stacked: true, // y축 스택 활성화
         grid: { color: "#E0E0E0" },
-        ticks: { color: "#333" },
+        ticks: {
+          color: "#333",
+          stepSize: 1, // Y축의 값이 1씩 증가하도록 설정
+        },
+        min: 0, // 최소값을 0으로 설정
+        max: Math.max(...correctValues, ...incorrectValues) + 5, // 최대값을 데이터의 최대값보다 조금 더 크게 설정
       },
     },
   };
+  
 
   return (
     <Container>
-      <Header>학습량 분석</Header>
+      <Header><img src={TextLogoBlack} alt="TextLogoBlack"/></Header> {/* 첫 번째 헤더 */}
+      <h3>학습량 분석</h3> 
       {isLoading ? (
         <p>데이터를 불러오는 중입니다...</p>
       ) : error ? (

@@ -57,22 +57,24 @@ const SignOut = () => {
     const token = localStorage.getItem('authToken'); 
     
     if (!token) {
-    alert('로그인된 사용자가 아닙니다.');
-    return;
-  
+      alert('로그인된 사용자가 아닙니다.');
+      return;
     }
 
+    if (!username) {
+      alert('아이디를 입력해주세요.');
+      return;
+    }
 
     try {
       // 아이디와 비밀번호를 백엔드에 전송
-      const response = await axios.delete('https://mathquestpro.shop/user/delete', {
+      const response = await axios.delete('https://mathquestpro.shop/user/delete/', {
         data: {
-            // 아이디도 전송해야 한다면 추가
           password: password,  // 비밀번호 전송
         },
       });
 
-      if (response.status === 200) {
+      if (response.status === 204) {
         alert('회원탈퇴가 완료되었습니다.');
         navigate('/');  // 탈퇴 후 리디렉션할 페이지
       }
@@ -83,8 +85,8 @@ const SignOut = () => {
 
   return (
     <Container>
-      <QuestHeader/>
-      <img id="ImageLogo" src={ImageLogo} alt="Logo"/>
+      <QuestHeader />
+      <img id="ImageLogo" src={ImageLogo} alt="Logo" />
       <Title>회원탈퇴</Title>
       <Subtitle>계정을 삭제합니다...</Subtitle>
       <Input
