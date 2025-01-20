@@ -128,7 +128,7 @@ export const PopupContent = styled.div`
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    width: 280px;
     h2 {
         margin-bottom: 20px;
         font-size: 18px;
@@ -199,7 +199,7 @@ export const SolutionContent = styled.div`
     text-align: center;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     width: 90%;
-    max-width: 400px;
+    max-width: 350px;
     box-sizing: border-box;
     h2 {
         font-size: 20px;
@@ -224,7 +224,7 @@ export const SolutionContent = styled.div`
         padding: 10px 20px;
         cursor: pointer;
         font-size: 14px;
-        margin-right: -280px;
+        margin-right: -230px;
         &:hover {
             background:rgb(77, 77, 77);
         }
