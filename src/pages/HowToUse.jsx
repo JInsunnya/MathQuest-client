@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import * as S from '../styles/HowToUseStyles';
+import * as S from '../styles/HowToUseStyles'; 
 import Image1 from '../assets/images/textlogoblack.png';
 import Image2 from '../assets/images/textlogoblack.png';
 import Image3 from '../assets/images/textlogoblack.png';
-import Image4 from '../assets/images/textlogoblack.png';
+import ImageLogo from '../assets/images/logo.png';
 
 const HowToUse = () => {
-  const [currentPage, setCurrentPage] = useState(0);
-  const navigate = useNavigate();
-
+    const [currentPage, setCurrentPage] = useState(0);
+    const navigate = useNavigate(); 
   const pages = [
     {
       image: Image1,
@@ -27,7 +26,7 @@ const HowToUse = () => {
       description: '난이도에 맞는 문제를 풀며 개인 맞춤형 학습을 진행하세요.',
     },
     {
-      image: Image4,
+      image: ImageLogo,
       title: '간편하고 직관적인 사용 경험',
       description: '쉽고 직관적인 인터페이스로 더 나은 학습을 경험하세요.',
     },
@@ -40,7 +39,7 @@ const HowToUse = () => {
   };
 
   const startApp = () => {
-    navigate('/option');
+    navigate('/option'); // 옵션 페이지로 이동
   };
 
   return (
@@ -48,18 +47,19 @@ const HowToUse = () => {
       <S.Image src={pages[currentPage].image} alt={pages[currentPage].title} />
       <S.Title>{pages[currentPage].title}</S.Title>
       <S.Description>{pages[currentPage].description}</S.Description>
-      <S.Indicator>
-        {pages.map((_, index) => (
-          <S.Circle key={index} active={index === currentPage} />
-        ))}
-      </S.Indicator>
-      {currentPage < pages.length - 1 ? (
-        <S.ArrowButton onClick={nextPage}>&rarr;</S.ArrowButton>
-      ) : (
-        <S.Button primary onClick={startApp}>
-          확인
-        </S.Button>
-      )}
+
+      <S.Footer>
+        <S.Indicator>
+          {pages.map((_, index) => (
+            <S.Circle key={index} active={index === currentPage} />
+          ))}
+        </S.Indicator>
+        {currentPage < pages.length - 1 ? (
+          <S.ArrowButton onClick={nextPage}>&rarr;</S.ArrowButton>
+        ) : (
+          <S.Button onClick={startApp}>시작</S.Button>
+        )}
+      </S.Footer>
     </S.IntroContainer>
   );
 };
