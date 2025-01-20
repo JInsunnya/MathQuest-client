@@ -18,7 +18,7 @@ const LearnAgainQuest = () => {
     const navigate = useNavigate();
 
     const fetchWrongQuestions = () => {
-        const token = localStorage.getItem('authToken');
+        const token = localStorage.getItem('accessToken');
         if (!token) {
             console.error('No authentication token found');
             return;
@@ -57,7 +57,7 @@ const LearnAgainQuest = () => {
         setShowPopup(true);
 
         if (isCorrect) {
-            const token = localStorage.getItem('authToken');
+            const token = localStorage.getItem('accessToken');
             if (token) {
                 axios
                     .post(

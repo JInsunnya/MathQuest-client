@@ -16,7 +16,7 @@ const LearnAgain = () => {
     }, []);
 
     const fetchWrongQuestions = () => {
-        const token = localStorage.getItem('authToken');
+        const token = localStorage.getItem('accessToken');
         if (!token) {
             console.error('No authentication token found');
             return;
