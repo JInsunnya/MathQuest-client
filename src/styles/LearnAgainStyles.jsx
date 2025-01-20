@@ -84,7 +84,7 @@ export const Content = styled.div`
 export const Question = styled.div`
     margin: 20px;
     padding: 15px;
-    border: 1px solid #ccc;
+    border: 2px solid #FFCA28;
     border-radius: 10px;
     background-color: #fff;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -97,3 +97,5 @@ export const Question = styled.div`
         color: #666;
     }
 `;
+
+
