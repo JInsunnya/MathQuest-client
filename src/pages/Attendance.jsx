@@ -3,6 +3,7 @@ import axios from 'axios';
 import Mark from '../assets/images/Mark.png'; // Mark.png 임포트
 import {
   CalendarContainer,
+  Header,
   DateDisplay,
   CalendarWrapper,
   CalendarBox, 
@@ -13,6 +14,7 @@ import {
   WeekdayRow,
   WeekdayCell,
 } from "../styles/AttendanceStyles"; // 스타일 컴포넌트 임포트
+import TextLogoBlack from '../assets/images/textlogoblack.png';
 import Footer from '../shared/components/Footer';
 
 const Attendance = () => {
@@ -93,6 +95,7 @@ const Attendance = () => {
 
   return (
     <CalendarContainer>
+      <Header><img src={TextLogoBlack} alt="TextLogoBlack"/></Header> {/* 첫 번째 헤더 */}
       <DateDisplay>
         <button onClick={() => handleMonthChange('prev')}>&lt;</button>
         <span>

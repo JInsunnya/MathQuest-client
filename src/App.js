@@ -6,7 +6,8 @@ import Landing from './pages/Landing';
 import Footer from './shared/components/Footer';
 import React from 'react';
 import Start from './pages/Start'; // Start 컴포넌트 경로
-import Login from './pages/auth/Login'; // 로그인 컴포넌트 경로
+import Login from './pages/auth/Login';
+import Logout from './pages/auth/Logout'; // 로그아웃 컴포넌트 경로
 import HowToUse from './pages/HowToUse'; // 앱 사용 방법 컴포넌트 경로
 import QuestHeader from './shared/components/QuestHeader';
 import QuestE4 from './pages/quests/QuestE4';
@@ -48,6 +49,7 @@ import Option from './pages/Option';
 import Help from './pages/Help';
 import Review from './pages/Review';
 
+
 function App() {
   return (
     <BrowserRouter>
@@ -58,6 +60,7 @@ function App() {
         <Route path="/footer" element={<Footer />} />
         <Route path="/start" element={<Start />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/logout" element={<Logout />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/accountcreationcomplete" element={<AccountCreationComplete />} />
         <Route path="/profile" element={<Profile/>}/>

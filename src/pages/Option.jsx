@@ -40,12 +40,10 @@ const Option = () => {
     // Array of modal items with their images
     const modalItems = [
         { label: '프로필 수정', image: Pencil, path: '/profile'},
-        { label: '문의하기', image: SpeechBuuble },
-        { label: '건의하기', image: Hand },
-        { label: '리뷰 작성하기', image: Review },
+        { label: '리뷰 작성하기', image: Review, path: '/review'},
         { label: '도움말', image: Help , path: '/help'},
         { label: '개발자 소개', image: Group, path: '/introduce'},
-        { label: '로그아웃', image: Out, onClick: handleLogout},
+        { label: '로그아웃', image: Out, path: '/logout'},
         { label: '회원탈퇴', image: Out,  path: '/signout' },
     ];
 
