@@ -15,77 +15,112 @@ import ImageLogo from '../../assets/images/logo.png';
 import QuestHeader from '../../shared/components/QuestHeader';
 
 const SignOut = () => {
-  const [username, setUsername] = useState('');  // 아이디 입력 상태
-  const [password, setPassword] = useState('');  // 비밀번호 입력 상태
-  const [confirmPassword, setConfirmPassword] = useState('');  // 비밀번호 확인 상태
-  const [isChecked, setIsChecked] = useState(false);  // 체크박스 상태
+  const [username, setUsername] = useState(''); // 아이디 입력 상태
+  const [password, setPassword] = useState(''); // 비밀번호 입력 상태
+  const [confirmPassword, setConfirmPassword] = useState(''); // 비밀번호 확인 상태
+  const [isChecked, setIsChecked] = useState(false); // 체크박스 상태
   const navigate = useNavigate();
 
-  // 아이디 입력 값 처리
-  const handleUsernameChange = (e) => {
-    setUsername(e.target.value);
+  // 핸들러 함수
+  const handleUsernameChange = (e) => setUsername(e.target.value);
+  const handlePasswordChange = (e) => setPassword(e.target.value);
+  const handleConfirmPasswordChange = (e) => setConfirmPassword(e.target.value);
+  const handleCheckboxChange = (e) => setIsChecked(e.target.checked);
+
+  const refreshAccessToken = async () => {
+    try {
+      const refreshToken = localStorage.getItem('refreshToken');
+      if (!refreshToken) {
+        alert('로그인이 필요합니다.');
+        navigate('/login');
+        return null;
+      }
+  
+      const response = await axios.post('https://mathquestpro.shop/user/refresh/', {
+        refresh: refreshToken,
+      });
+  
+      const newAccessToken = response.data.access;
+      localStorage.setItem('token', newAccessToken); // 새 토큰 저장
+      return newAccessToken;
+    } catch (error) {
+      console.error('토큰 갱신 오류:', error.response?.data || error.message);
+      alert('다시 로그인해주세요.');
+      navigate('/login');
+      return null;
+    }
+  };
+  
+
+  const clearLocalData = () => {
+    localStorage.clear(); // 로컬 데이터 초기화
+    alert('회원 탈퇴가 완료되었습니다.');
+    navigate('/'); // 메인 페이지로 이동
   };
 
-  // 비밀번호 입력 값 처리
-  const handlePasswordChange = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const handleConfirmPasswordChange = (e) => {
-    setConfirmPassword(e.target.value);
-  };
-
-  // 체크박스 변경 처리
-  const handleCheckboxChange = () => {
-    setIsChecked(!isChecked);
-  };
-
-  // 탈퇴 요청 처리
   const handleSignOut = async () => {
-    // 비밀번호가 일치하는지 확인
+    if (!username || !password || !confirmPassword) {
+      alert('모든 필드를 입력해주세요.');
+      return;
+    }
     if (password !== confirmPassword) {
       alert('비밀번호가 일치하지 않습니다.');
       return;
     }
-    
-    // 체크박스가 선택되었는지 확인
     if (!isChecked) {
-      alert('회원탈퇴를 계속 진행하려면 체크박스를 선택하세요.');
-      return;
-    }
-
-    const token = localStorage.getItem('authToken');  // 토큰 가져오기
-    
-    if (!token) {
-      alert('로그인된 사용자가 아닙니다.');
-      return;
-    }
-
-    if (!username) {
-      alert('아이디를 입력해주세요.');
+      alert('회원탈퇴 확인을 위해 체크박스를 선택해주세요.');
       return;
     }
 
     try {
-      // 아이디와 비밀번호를 백엔드에 전송
+      let token = localStorage.getItem('token');
+      if (!token) {
+        clearLocalData(); // 로컬 데이터 초기화
+        return;
+      }
+
       const response = await axios.delete('https://mathquestpro.shop/user/delete/', {
         headers: {
-          Authorization: `Bearer ${token}`,  // Authorization 헤더에 토큰 추가
+          Authorization: `Bearer ${token}`,
         },
-        data: {
-          password: password,  // 비밀번호 전송
-        },
+        data: { password },
       });
 
-      if (response.status === 204) {
-        alert('회원탈퇴가 완료되었습니다.');
-        navigate('/');  // 탈퇴 후 리디렉션할 페이지
-      } else {
-        alert('회원탈퇴에 실패했습니다. 다시 시도해주세요.');
+      if (response.status === 200) {
+        alert('그동안 이용해주셔서 감사합니다.');
+        clearLocalData(); // 로컬 데이터 초기화
       }
     } catch (error) {
-      console.error('회원탈퇴 오류:', error);
-      alert('회원탈퇴에 실패했습니다. 비밀번호를 다시 확인해주세요.');
+      if (error.response?.status === 403) {
+        // 토큰 갱신 후 재시도
+        const newToken = await refreshAccessToken();
+        if (newToken) {
+          try {
+            const retryResponse = await axios.delete('https://mathquestpro.shop/user/delete/', {
+              headers: {
+                Authorization: `Bearer ${newToken}`,
+              },
+              data: { password },
+            });
+
+            if (retryResponse.status === 200) {
+              alert('회원탈퇴가 완료되었습니다.');
+              clearLocalData(); // 로컬 데이터 초기화
+            }
+          } catch (retryError) {
+            console.error('회원탈퇴 재시도 오류:', retryError.response?.data || retryError.message);
+            alert(retryError.response?.data?.error || '오류가 발생했습니다. 다시 시도해주세요.');
+            clearLocalData(); // 로컬 데이터 초기화
+          }
+        } else {
+          // 토큰 갱신 실패 시 로컬 데이터 초기화
+          clearLocalData();
+        }
+      } else {
+        console.error('회원탈퇴 오류:', error.response?.data || error.message);
+        alert(error.response?.data?.error || '오류가 발생했습니다. 다시 시도해주세요.');
+        clearLocalData(); // 로컬 데이터 초기화
+      }
     }
   };
 
