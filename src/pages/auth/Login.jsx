@@ -41,6 +41,11 @@ const Login = () => {
         setPassword(''); // Reset password input field
     };
 
+    // 비밀번호 찾기 클릭 시 이동하는 함수
+    const handleForgotPassword = () => {
+        navigate('/forgotpassword'); // 비밀번호 찾기 페이지로 이동
+    };
+
     return (
         <L.Container>
             <L.ImageLogo src={ImageLogo} alt="Logo" />
@@ -66,7 +71,7 @@ const Login = () => {
                 
                 <L.LoginButton type="submit">Login</L.LoginButton>
                 <L.ForgotPassword>
-                    <L.ForgotPasswordLink href="/forgot-password">비밀번호를 잊어버리셨나요?</L.ForgotPasswordLink>
+                    <L.ForgotPasswordLink onClick={handleForgotPassword}>비밀번호를 잊어버리셨나요?</L.ForgotPasswordLink>
                 </L.ForgotPassword>
             </L.Form>
 
