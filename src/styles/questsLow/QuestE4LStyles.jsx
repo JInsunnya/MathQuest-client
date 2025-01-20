@@ -121,7 +121,7 @@ export const Level1Content = styled.div`
   top: 40%;
   left: 37%;
   color: white;
-  font-weight: bold;
+ 
 `;
 
 export const Level2 = styled.div`
@@ -166,13 +166,13 @@ export const Level2Content = styled.div`
   top: 40%;
   left: 37%;
   color: white;
-  font-weight: bold;
+  
 `;
 
 export const Level3 = styled.div`
   position: absolute;
   z-index: 1;
-  top: 39%;
+  top: 38.5%;
   padding: 0;
   margin-top: 46%;
   cursor: pointer;
@@ -211,13 +211,13 @@ export const Level3Content = styled.div`
   top: 40%;
   left: 37%;
   color: white;
-  font-weight: bold;
+
 `;
 
 export const Level4 = styled.div`
   position: absolute;
   z-index: 1;
-  top: 38%;
+  top: 37.6%;
   padding: 0;
   margin-top: 80%;
   cursor: pointer;
@@ -256,5 +256,5 @@ export const Level4Content = styled.div`
   top: 40%;
   left: 37%;
   color: white;
-  font-weight: bold;
+  
 `;
