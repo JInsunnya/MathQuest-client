@@ -80,8 +80,11 @@ const SignOut = () => {
       if (response.status === 204) {
         alert('회원탈퇴가 완료되었습니다.');
         navigate('/');  // 탈퇴 후 리디렉션할 페이지
+      } else {
+        alert('회원탈퇴에 실패했습니다. 다시 시도해주세요.');
       }
     } catch (error) {
+      console.error('회원탈퇴 오류:', error);
       alert('회원탈퇴에 실패했습니다. 비밀번호를 다시 확인해주세요.');
     }
   };
