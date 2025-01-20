@@ -20,14 +20,14 @@ export const Container = styled.div`
 export const Header = styled.div`
     margin-top: -28%;
     display: flex;
-    gap: 55%;
+    gap: 110%;
 `;
 
 export const HeaderTitle = styled.div`
     white-space: nowrap;
     font-size: 1.6rem;
     font-weight: bold;
-    margin-left: -10px;
+    margin-left: -60%;
 `;
 
 export const HeaderButton = styled.div`
@@ -148,6 +148,7 @@ margin-bottom: 5%;
 
 export const YearContent = styled.div`
     margin-left: -5px;
+    margin-bottom: 12%;
     select {
         width: 140%;
         height: 39px;
