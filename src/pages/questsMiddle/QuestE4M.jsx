@@ -16,7 +16,11 @@ const QuestE4M = () => {
     const {level, difficulty} = location.state || {};
 
     const handleQuestPage = (chapter) => {
-        navigate('/questPage', { state: { level, difficulty, chapter } });
+        if (level && difficulty && chapter) {
+            navigate(`/questPage?level=${level}&difficulty=${difficulty}&chapter=${chapter}`);
+        } else {
+            console.error('전달할 데이터가 부족합니다:', { level, difficulty, chapter });
+        }        
     };
 
     return(
