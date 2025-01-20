@@ -1,19 +1,21 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as S from '../styles/HowToUseStyles'; 
-import Image1 from '../assets/images/textlogoblack.png';
+import screen1 from '../assets/images/screen1.png';
 import Image2 from '../assets/images/textlogoblack.png';
-import Image3 from '../assets/images/textlogoblack.png';
-import ImageLogo from '../assets/images/logo.png';
+import screen3 from '../assets/images/screen3.png';
+import screen4 from '../assets/images/screen4.png';
 
 const HowToUse = () => {
-    const [currentPage, setCurrentPage] = useState(0);
-    const navigate = useNavigate(); 
+  const [currentPage, setCurrentPage] = useState(0);
+  const navigate = useNavigate(); 
+
   const pages = [
     {
-      image: Image1,
+      image: screen1,
       title: '효율적인 수학 학습',
       description: '수학 문제 풀이 과정을 간단하고 체계적으로 학습하세요.',
+      rounded: true,
     },
     {
       image: Image2,
@@ -21,14 +23,16 @@ const HowToUse = () => {
       description: '오답노트를 통해 틀린 문제를 복습하고 학습의 효율성을 높이세요.',
     },
     {
-      image: Image3,
+      image: screen3,
       title: '난이도별 맞춤 학습',
       description: '난이도에 맞는 문제를 풀며 개인 맞춤형 학습을 진행하세요.',
+      rounded: true,
     },
     {
-      image: ImageLogo,
+      image: screen4,
       title: '간편하고 직관적인 사용 경험',
       description: '쉽고 직관적인 인터페이스로 더 나은 학습을 경험하세요.',
+      rounded: true,
     },
   ];
 
@@ -44,7 +48,11 @@ const HowToUse = () => {
 
   return (
     <S.IntroContainer>
-      <S.Image src={pages[currentPage].image} alt={pages[currentPage].title} />
+      <S.Image 
+        src={pages[currentPage].image} 
+        alt={pages[currentPage].title} 
+        rounded={pages[currentPage].rounded}  // rounded 속성 전달
+      />
       <S.Title>{pages[currentPage].title}</S.Title>
       <S.Description>{pages[currentPage].description}</S.Description>
 

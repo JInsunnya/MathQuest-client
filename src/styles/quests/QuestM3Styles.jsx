@@ -36,7 +36,7 @@ export const PhotoBack = styled.div`
 export const Photo = styled.div`
   position: absolute;
   z-index: 1;
-  top: 13%;
+  top: 77px;
   padding: 0;
   img {
     width: 55px;
